@@ -3,11 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import LoginSignup from './pages/LoginSignup';
-import Dashboard from './pages/Dashboard';
 import AdminCreateCourse from './pages/AdminCreateCourse';
 import AdminAddLesson from './pages/AdminAddLesson';
 import AdminAddQuiz from './pages/AdminAddQuiz';
-import CourseCard from './components/CourseCard';
 import AdminHome from './pages/AdminHome';
 import AdminCourseDetails from './pages/AdminCourseDetails';
 import UserCourseDetails from './pages/UserCourseDetails';
