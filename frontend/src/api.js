@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api', // Adjust for deployed backend
+  baseURL: 'https://learning-management-system-backend-uewc.onrender.com/api', // Adjust for deployed backend
 });
 
 // Add token to request headers if present
