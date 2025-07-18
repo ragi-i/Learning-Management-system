@@ -1,0 +1,185 @@
+.user-home-bg {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #f4f7fb 0%, #e9eef6 100%);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  padding-bottom: 2rem;
+}
+
+/* Profile Bar */
+.profile-bar {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  margin-bottom: 2.5rem;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2.5px solid #3a506b;
+  object-fit: cover;
+  background: #f4f7fb;
+}
+
+.profile-name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #233554;
+  letter-spacing: 0.5px;
+}
+
+/* Container */
+.user-home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.home-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #233554;
+  margin-bottom: 2rem;
+}
+
+/* Grid Layout */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card */
+.course-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(44, 62, 80, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: 0.2s;
+  overflow: hidden;
+  min-height: 420px;
+  border: 1.5px solid #e9eef6;
+  cursor: pointer;
+}
+.course-card:hover {
+  box-shadow: 0 10px 24px rgba(58, 80, 107, 0.13);
+  transform: translateY(-4px) scale(1.02);
+  border-color: #5bc0be;
+}
+
+/* Thumbnail */
+.thumbnail-wrapper {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+.course-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.2s;
+}
+.thumbnail-wrapper:hover .course-thumbnail {
+  transform: scale(1.04);
+}
+
+/* Status Badge */
+.status-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 20px;
+  color: #fff;
+}
+.status-badge.in-progress {
+  background: #f9c846;
+  color: #233554;
+}
+.status-badge.complete {
+  background: #43b581;
+}
+
+/* Info */
+.course-info {
+  padding: 1rem 1.2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.course-info h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.course-desc {
+  color: #3a506b;
+  font-size: 0.95rem;
+  min-height: 38px;
+}
+.course-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #5bc0be;
+  font-size: 0.95rem;
+}
+
+/* Progress Bar */
+.progress-section p {
+  font-size: 0.9rem;
+}
+.progress-bar {
+  height: 10px;
+  background: #e9eef6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #5bc0be, #43b581);
+}
+
+/* Actions */
+.actions {
+  margin-top: auto;
+}
+.enroll-btn,
+.continue-btn {
+  width: 100%;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(90deg, #3a506b, #5bc0be);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.enroll-btn:hover,
+.continue-btn:hover {
+  background: linear-gradient(90deg, #5bc0be, #3a506b);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 1.5rem;
+  }
+}

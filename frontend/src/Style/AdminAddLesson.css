@@ -1,0 +1,133 @@
+/* Background */
+.add-lesson-container {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #f4f7fb 0%, #e9eef6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+/* Card */
+.form-box {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.13);
+  padding: 2.5rem 2.2rem 2rem 2.2rem;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.7s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.form-box h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #233554;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.form-box form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-box input {
+  background: #f7f9fc;
+  border: 1.5px solid #e0e6ed;
+  border-radius: 8px;
+  padding: 0.85rem 1.1rem 0.85rem 2.5rem;
+  font-size: 1.07rem;
+  color: #233554;
+  outline: none;
+  transition: border 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.form-box input:focus {
+  border: 2px solid #5bc0be;
+  background: #f0f4ff;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5bc0be;
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+  align-content: center;
+}
+
+.add-btn {
+  background: linear-gradient(90deg, #3a506b 0%, #5bc0be 100%);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.07rem;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+  transition: background 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.add-btn:hover {
+  background: linear-gradient(90deg, #5bc0be 0%, #3a506b 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.skip-btn {
+  background: #e9eef6;
+  color: #3a506b;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.07rem;
+  padding: 0.7rem 1.3rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.skip-btn:hover {
+  background: #3a506b;
+  color: #fff;
+  margin-left: 20px;
+}
+
+@media (max-width: 600px) {
+  .form-box {
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    max-width: 98vw;
+  }
+  .form-box h2 {
+    font-size: 1.2rem;
+  }
+}
