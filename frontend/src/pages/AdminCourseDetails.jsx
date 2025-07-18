@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import API from "../api";
 import "../Style/AdminCourseDetails.css";
+import { AuthContext } from "../authContext";
 
-// Dummy admin info (replace with actual admin context)
-const adminProfile = {
-  name: "Admin User",
-  avatar:
-    "https://ui-avatars.com/api/?name=Admin+User&background=6a82fb&color=fff&size=64",
-};
+// const adminProfile = {
+//   name: "Admin User",
+//   avatar:
+//     "https://ui-avatars.com/api/?name=Admin+User&background=6a82fb&color=fff&size=64",
+// };
 
 const AdminCourseDetails = () => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
   const [course, setCourse] = useState({ lessons: [], quizzes: [] });
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -20,7 +21,6 @@ const AdminCourseDetails = () => {
     const fetchCourse = async () => {
       try {
         const res = await API.get(`/courses/${id}`);
-        // Ensure lessons & quizzes are arrays even if missing
         setCourse({
           ...res.data,
           lessons: res.data.lessons || [],
@@ -62,8 +62,12 @@ const AdminCourseDetails = () => {
             </p>
           </div>
           <div className="admin-header-profile">
-            <img src={adminProfile.avatar} alt="Admin" className="admin-avatar" />
-            <span className="admin-name">{adminProfile.name}</span>
+            <img
+              src={user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || "Admin")}&background=6a82fb&color=fff&size=64`}
+              alt="Admin"
+              className="admin-avatar"
+            />
+            <span className="admin-name">{user?.name || "Admin"}</span>
           </div>
         </header>
 

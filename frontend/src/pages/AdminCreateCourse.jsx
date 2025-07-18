@@ -33,7 +33,7 @@ const AdminCreateCourse = () => {
     }
   };
 
-  // ✅ Cancel and go back to Admin Home
+  //  Cancel and go back to Admin Home
   const handleCancel = () => {
     if (window.confirm('Are you sure you want to cancel creating this course?')) {
       navigate('/admin/home'); // Admin home route

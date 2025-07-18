@@ -42,7 +42,7 @@ exports.markLessonComplete = async (req, res) => {
 
     const courseId = lesson.course;
 
-    // ✅ Check enrollment
+    // Check enrollment
     const isEnrolled = await User.exists({
       _id: userId,
       'enrolledCourses.course': courseId
@@ -52,7 +52,7 @@ exports.markLessonComplete = async (req, res) => {
       return res.status(403).json({ message: 'You must enroll in the course to mark this lesson complete' });
     }
 
-    // ✅ Update Progress
+    // Update Progress
     let progress = await Progress.findOne({ user: userId, course: courseId });
 
     if (!progress) {

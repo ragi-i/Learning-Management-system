@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const questionSchema = new mongoose.Schema({
   text: { type: String, required: true },
   options: [{ type: String, required: true }],
-  correctAnswers: [{ type: Number, required: true }], // ✅ Array for multiple correct answers
-  type: { type: String, enum: ['single', 'multiple'], default: 'single' } // ✅ Single/Multiple
+  correctAnswers: [{ type: Number, required: true }],
+  type: { type: String, enum: ['single', 'multiple'], default: 'single' } 
 });
 
 const quizSchema = new mongoose.Schema({

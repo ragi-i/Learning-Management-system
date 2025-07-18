@@ -6,7 +6,7 @@ const courseSchema = new mongoose.Schema({
   description: { type: String, required: true },
   instructor: { type: String, required: true },
   price: { type: Number, required: true },
-  thumbnail: { type: String, required: true }, // Image URL
+  thumbnail: { type: String, required: true }, 
   lessons: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Lesson' }],
   quizzes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Quiz' }]
 },{ timestamps: true });

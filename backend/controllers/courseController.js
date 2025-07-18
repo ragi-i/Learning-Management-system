@@ -33,15 +33,15 @@ exports.getAllCourses = async (req, res) => {
 exports.getCourseById = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id)
-      .populate('lessons') // full lesson details
-      .populate('quizzes'); // full quiz details
+      .populate('lessons') 
+      .populate('quizzes'); 
 
     if (!course) return res.status(404).json({ message: 'Course not found' });
 
     let responseCourse = course.toObject();
     let isEnrolled = false;
 
-    // ✅ If user is admin, return full data without restrictions
+    // If user is admin, return full data without restrictions
     if (req.user && req.user.role === 'admin') {
       responseCourse.lessons = course.lessons.map((lesson) => ({
         _id: lesson._id,
@@ -54,14 +54,14 @@ exports.getCourseById = async (req, res) => {
       responseCourse.quizzes = course.quizzes.map((quiz) => ({
         _id: quiz._id,
         title: quiz.title,
-        questions: quiz.questions, // all questions
+        questions: quiz.questions, 
         locked: false
       }));
 
       return res.json({ ...responseCourse, isEnrolled: true });
     }
 
-    // ✅ Check enrollment for normal users
+    // Check enrollment for normal users
     if (req.user) {
       const user = await User.findById(req.user.id);
       if (user) {

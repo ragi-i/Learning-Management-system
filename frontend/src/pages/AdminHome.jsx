@@ -4,11 +4,10 @@ import API from "../api";
 import { AuthContext } from "../authContext";
 import "./AdminHome.css";
 
-// Dummy admin info for demonstration; replace with actual context/user data as needed
-const adminProfile = {
-  name: "Admin User",
-  avatar: "https://ui-avatars.com/api/?name=Admin+User&background=6a82fb&color=fff&size=64"
-};
+// const adminProfile = {
+//   name: "Admin User",
+//   avatar: "https://ui-avatars.com/api/?name=Admin+User&background=6a82fb&color=fff&size=64"
+// };
 
 const AdminHome = () => {
   const { user } = useContext(AuthContext);
@@ -45,8 +44,12 @@ const AdminHome = () => {
             </p>
           </div>
           <div className="admin-profile-box">
-            <img src={adminProfile.avatar} alt="Admin" className="admin-avatar" />
-            <span className="admin-name">{adminProfile.name}</span>
+            <img
+              src={user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || "Admin")}&background=6a82fb&color=fff&size=64`}
+              alt="Admin"
+              className="admin-avatar"
+            />
+            <span className="admin-name">{user?.name || "Admin"}</span>
           </div>
         </header>
 

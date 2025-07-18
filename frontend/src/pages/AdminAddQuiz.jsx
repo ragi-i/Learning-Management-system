@@ -19,7 +19,7 @@ const AdminAddQuiz = () => {
   const [currentQ, setCurrentQ] = useState({ ...defaultQuestion });
   const [error, setError] = useState("");
 
-  // Handle input changes for current question
+
   const handleQChange = (e) => {
     setCurrentQ({ ...currentQ, text: e.target.value });
   };
@@ -38,7 +38,7 @@ const AdminAddQuiz = () => {
     if (currentQ.type === "single") {
       setCurrentQ({ ...currentQ, correctAnswers: [idx] });
     } else {
-      // multiple
+     
       let arr = [...currentQ.correctAnswers];
       if (arr.includes(idx)) {
         arr = arr.filter((i) => i !== idx);

@@ -10,10 +10,11 @@ const protect = require('../middlewares/authMiddleware.js');
 
 // Public routes
 router.get('/', getAllCourses);
-router.get('/:id',protect, getCourseById);
+
 
 // Protected routes
 router.post('/', protect, createCourse);
 router.post('/:id/enroll', protect, enrollInCourse);
+router.get('/:id',protect, getCourseById);
 
 module.exports = router;

@@ -53,7 +53,7 @@ const Home = () => {
 
   if (loading) return <p className="loading">Loading courses...</p>;
 
-  // Profile avatar fallback
+
   const avatarUrl =
     user?.avatar ||
     `https://ui-avatars.com/api/?name=${encodeURIComponent(

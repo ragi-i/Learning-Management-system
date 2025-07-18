@@ -4,7 +4,7 @@ import './CourseCard.css';
 const CourseCard = ({ course }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  if (!course) return null; // Don't render if course is missing
+  if (!course) return null; 
 
   const {
     thumbnail = 'https://via.placeholder.com/320x180?text=Course+Thumbnail',
