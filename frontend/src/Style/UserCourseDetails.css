@@ -1,7 +1,7 @@
 /* Background and Wrapper */
 .course-details-wrapper {
   min-height: 100vh;
-  background: linear-gradient(120deg, #95a5b5 0%, #4d7ba9 100%);
+  background: #e9eef6;
   padding: 40px 0;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   box-shadow: #10b981;
@@ -28,6 +28,7 @@
   font-weight: 800;
   color: #22223b;
   margin-bottom: 0.5rem;
+  margin-top: 0px;
 }
 
 .course-header p {
@@ -121,8 +122,8 @@
 /* Lessons Grid */
 .lessons-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0rem;
   max-width: 900px;
   margin: 0 auto 2.5rem auto;
 }
@@ -235,7 +236,7 @@
 .quiz-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  gap: 0rem;
   max-width: 900px;
   margin: 0 auto 2.5rem auto;
 }
