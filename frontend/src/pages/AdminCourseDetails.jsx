@@ -47,7 +47,11 @@ const AdminCourseDetails = () => {
     return url;
   };
 
-  if (loading) return <p className="loading">Loading course details...</p>;
+  if (loading) return (
+    <div className="loading">
+      <span className="loader-spinner" />
+    </div>
+  );
 
   return (
     <div className="admin-course-bg">

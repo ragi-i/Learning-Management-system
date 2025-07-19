@@ -51,7 +51,11 @@ const Home = () => {
     }
   };
 
-  if (loading) return <p className="loading">Loading courses...</p>;
+  if (loading) return (
+    <div className="loading">
+      <span className="loader-spinner" />
+    </div>
+  );
 
 
   const avatarUrl =

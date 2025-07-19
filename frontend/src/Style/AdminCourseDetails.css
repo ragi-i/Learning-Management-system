@@ -311,11 +311,30 @@ details ul {
 
 /* Loading */
 .loading {
-  color: #3a506b;
-  font-size: 1.25rem;
-  text-align: center;
-  margin-top: 2.2rem;
-  font-weight: 700;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.7);
+  z-index: 9999;
+}
+
+.loader-spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #e9eef6;
+  border-top: 5px solid #5bc0be;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Responsive */

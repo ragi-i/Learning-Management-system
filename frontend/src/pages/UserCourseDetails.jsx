@@ -117,7 +117,11 @@ const UserCourseDetails = () => {
     return url;
   };
 
-  if (loading) return <p className="loading">Loading course details...</p>;
+  if (loading) return (
+    <div className="loading">
+      <span className="loader-spinner" />
+    </div>
+  );
   if (!course) return <p className="error">Course not found</p>;
 
   return (
