@@ -236,7 +236,7 @@
 .quiz-card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 0rem;
+  gap: 2rem;
   max-width: 900px;
   margin: 0 auto 2.5rem auto;
 }

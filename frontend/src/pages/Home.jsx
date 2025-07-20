@@ -99,7 +99,9 @@ const Home = () => {
                     }
                     alt={course.title}
                     className="course-thumbnail"
+                    
                   />
+                  
                   {isEnrolled && (
                     <span
                       className={`status-badge ${

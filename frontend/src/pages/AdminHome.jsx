@@ -91,10 +91,11 @@ const AdminHome = () => {
                 <div className="course-info">
                   <h3>{course.title}</h3>
                   <p className="course-desc">{course.description}</p>
-                  <p>
-                    <strong>Instructor:</strong> {course.instructor}
-                  </p>
-                  <p className="price">₹{course.price}</p>
+                 <div className="course-meta">
+  <span> <i className="fa fa-user"></i> {course.instructor}</span>
+  <span className="price">₹{course.price}</span>
+</div>
+
                   <div className="course-card-actions">
                     <button
                       className="manage-lesson-btn"
