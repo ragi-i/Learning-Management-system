@@ -27,6 +27,7 @@ const UserCourseDetails = () => {
   const [score, setScore] = useState(0);
   const [loading, setLoading] = useState(true);
   const [progressExpanded, setProgressExpanded] = useState(false);
+  const [expandedResource, setExpandedResource] = useState(null);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -218,7 +219,7 @@ const UserCourseDetails = () => {
           {!course.lessons || course.lessons.length === 0 ? (
             <p className="empty-list">No lessons yet.</p>
           ) : (
-            course.lessons.map((lesson) => {
+            course.lessons.map((lesson, idx) => {
               // Robust check for completed lessons (string comparison)
               const completed = progress?.completedLessonsIds?.some(
                 (id) => String(id) === String(lesson._id)
@@ -250,6 +251,35 @@ const UserCourseDetails = () => {
                     {enrolled ? <MdOndemandVideo /> : <FaLock />}
                   </div>
                   <div className="lesson-title">{lesson.title}</div>
+                  {lesson.resources && lesson.resources.length > 0 && (
+                    <>
+                      <a
+                        href="#"
+                        className="resource-link"
+                        onClick={e => {
+                          e.preventDefault();
+                          setExpandedResource(idx === expandedResource ? null : idx);
+                        }}
+                      >
+                        <i className="fa fa-link"></i> Resource
+                      </a>
+                      {expandedResource === idx && (
+                        <div className="resource-copy-box" style={{ marginTop: 8 }}>
+                          <span style={{ marginRight: 8 }}>{lesson.resources[0]}</span>
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(lesson.resources[0]);
+                              setExpandedResource(null);
+                            }}
+                            className="copy-btn"
+                            type="button"
+                          >
+                            Copy
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  )}
                   {!enrolled ? (
                     <p className="locked-text">
                       <FaLock style={{ marginRight: 4 }} /> Enroll to access

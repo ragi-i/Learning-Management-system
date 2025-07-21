@@ -3,12 +3,7 @@ import { useParams } from "react-router-dom";
 import API from "../api";
 import "../Style/AdminCourseDetails.css";
 import { AuthContext } from "../authContext";
-
-// const adminProfile = {
-//   name: "Admin User",
-//   avatar:
-//     "https://ui-avatars.com/api/?name=Admin+User&background=6a82fb&color=fff&size=64",
-// };
+import { FaPlayCircle, FaQuestionCircle, FaLink, FaChalkboardTeacher } from "react-icons/fa";
 
 const AdminCourseDetails = () => {
   const { id } = useParams();
@@ -16,6 +11,7 @@ const AdminCourseDetails = () => {
   const [course, setCourse] = useState({ lessons: [], quizzes: [] });
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [expandedResource, setExpandedResource] = useState(null);
 
   useEffect(() => {
     const fetchCourse = async () => {
@@ -32,7 +28,6 @@ const AdminCourseDetails = () => {
         setLoading(false);
       }
     };
-
     fetchCourse();
   }, [id]);
 
@@ -47,11 +42,12 @@ const AdminCourseDetails = () => {
     return url;
   };
 
-  if (loading) return (
-    <div className="loading">
-      <span className="loader-spinner" />
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="loading">
+        <span className="loader-spinner" />
+      </div>
+    );
 
   return (
     <div className="admin-course-bg">
@@ -62,6 +58,7 @@ const AdminCourseDetails = () => {
             <h2>{course.title}</h2>
             <p>{course.description}</p>
             <p>
+              <FaChalkboardTeacher style={{ color: "#6366f1", marginRight: 6 }} />
               Instructor: <strong>{course.instructor}</strong>
             </p>
           </div>
@@ -82,27 +79,44 @@ const AdminCourseDetails = () => {
             <p className="empty-text">No lessons added yet.</p>
           ) : (
             <div className="lessons-card-grid">
-              {course.lessons.map((lesson) => (
+              {course.lessons.map((lesson, idx) => (
                 <div className="lesson-card-modern" key={lesson._id}>
                   <div
                     className="lesson-icon"
                     title="Play Video"
-                    onClick={() =>
-                      setSelectedVideo(getEmbedUrl(lesson.videoUrl))
-                    }
+                    onClick={() => setSelectedVideo(getEmbedUrl(lesson.videoUrl))}
                   >
-                    <i className="fa fa-play-circle"></i>
+                    <FaPlayCircle />
                   </div>
-                  <h4>{lesson.title}</h4>
+                  <div className="lesson-title">{lesson.title}</div>
                   {lesson.resources && lesson.resources.length > 0 && (
-                    <a
-                      href={lesson.resources[0]}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="resource-link"
-                    >
-                      <i className="fa fa-link"></i> Resource
-                    </a>
+                    <>
+                      <a
+                        href="#"
+                        className="resource-link"
+                        onClick={e => {
+                          e.preventDefault();
+                          setExpandedResource(idx === expandedResource ? null : idx);
+                        }}
+                      >
+                        <FaLink style={{ marginRight: 6 }} /> Resource
+                      </a>
+                      {expandedResource === idx && (
+                        <div className="resource-copy-box" style={{ marginTop: 8 }}>
+                          <span style={{ marginRight: 8 }}>{lesson.resources[0]}</span>
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(lesson.resources[0]);
+                              setExpandedResource(null);
+                            }}
+                            className="copy-btn"
+                            type="button"
+                          >
+                            Copy
+                          </button>
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
               ))}
@@ -120,7 +134,7 @@ const AdminCourseDetails = () => {
               {course.quizzes.map((quiz) => (
                 <div className="quiz-card-modern" key={quiz._id}>
                   <h4>
-                    <i className="fa fa-question-circle quiz-icon"></i> {quiz.title}
+                    <span className="quiz-icon"><FaQuestionCircle /></span> {quiz.title}
                   </h4>
                   <p>{quiz.questions?.length || 0} questions</p>
                   <details>
@@ -134,9 +148,7 @@ const AdminCourseDetails = () => {
                             {q.options.map((opt, i) => (
                               <li
                                 key={i}
-                                className={
-                                  q.correctAnswers.includes(i) ? "correct" : ""
-                                }
+                                className={q.correctAnswers.includes(i) ? "correct" : ""}
                               >
                                 {opt}
                               </li>
@@ -172,12 +184,6 @@ const AdminCourseDetails = () => {
           </div>
         )}
       </div>
-
-      {/* FontAwesome Icons */}
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      />
     </div>
   );
 };
