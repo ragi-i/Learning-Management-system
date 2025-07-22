@@ -83,10 +83,10 @@
 }
 
 .section-title {
-  font-size: 1.35rem;
+  font-size: 1.7rem;
   font-weight: 900;
   color: #f4f7fb;
-  margin-bottom: 1.2rem;
+  margin: 1.2rem auto 1.2rem auto;
   letter-spacing: 0.6px;
   padding: 0.32rem 1.1rem 0.32rem 0.9rem;
   border-radius: 12px;
@@ -99,10 +99,19 @@
   text-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
   position: relative;
   min-height: 2.2em;
-  margin-left: 0.5rem;
   width: 98%;
+  max-width: 700px;
 }
-.section-title::before {
+
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 1.18rem;
+    margin: 0.8rem auto 0.8rem auto;
+    padding: 0.22rem 0.5rem 0.22rem 0.5rem;
+    width: 99%;
+  }
+}
+/* .section-title::before {
   content: '';
   display: inline-block;
   width: 6px;
@@ -112,7 +121,7 @@
   margin-right: 0.7rem;
   vertical-align: middle;
   box-shadow: 0 2px 8px rgba(67, 181, 129, 0.13);
-}
+} */
 
 .lessons-card-grid {
   display: grid;
@@ -242,7 +251,7 @@
   margin-bottom: 0.7rem;
   text-align: center;
   display: flex;
-  align-items: center;
+  align-items: left;
   gap: 0.5rem;
 }
 .quiz-icon {

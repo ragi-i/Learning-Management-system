@@ -16,6 +16,8 @@ const LoginSignup = () => {
     role: 'user'
   });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -34,6 +36,8 @@ const LoginSignup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
+    setLoading(true);
 
     const endpoint = isRegister ? '/auth/register' : '/auth/login';
 
@@ -44,14 +48,26 @@ const LoginSignup = () => {
 
       const res = await API.post(endpoint, payload);
 
+      setLoading(false);
+      if (isRegister) {
+        setSuccess('Signup successful! You can now log in.');
+      } else {
+        setSuccess('Signin successful! Redirecting...');
+      }
+
       login(res.data.token, res.data.user);
 
-      if (res.data.user.role === 'admin') {
-        navigate('/admin/home');
-      } else {
-        navigate('/home');
+      if (!isRegister) {
+        setTimeout(() => {
+          if (res.data.user.role === 'admin') {
+            navigate('/admin/home');
+          } else {
+            navigate('/home');
+          }
+        }, 1200);
       }
     } catch (err) {
+      setLoading(false);
       setError(err.response?.data?.message || 'Something went wrong');
     }
   };
@@ -62,7 +78,13 @@ const LoginSignup = () => {
         <div className="login-toggle" role="tablist">
           <button
             className={!isRegister ? 'active' : ''}
-            onClick={() => setIsRegister(false)}
+            onClick={() => {
+              setIsRegister(false);
+              setFormData({ name: '', email: '', password: '', role: 'user' });
+              setError('');
+              setSuccess('');
+              setLoading(false);
+            }}
             aria-selected={!isRegister}
             aria-label="Login Tab"
             type="button"
@@ -71,7 +93,13 @@ const LoginSignup = () => {
           </button>
           <button
             className={isRegister ? 'active' : ''}
-            onClick={() => setIsRegister(true)}
+            onClick={() => {
+              setIsRegister(true);
+              setFormData({ name: '', email: '', password: '', role: 'user' });
+              setError('');
+              setSuccess('');
+              setLoading(false);
+            }}
             aria-selected={isRegister}
             aria-label="Register Tab"
             type="button"
@@ -154,7 +182,17 @@ const LoginSignup = () => {
               </label>
             </div>
           )}
-          <button type="submit" className="login-btn">
+          {loading && (
+            <div className="login-message info">
+              {isRegister ? 'Signing up, please wait...' : 'Signing in, please wait...'}
+            </div>
+          )}
+          {success && (
+            <div className="login-message success">
+              {success}
+            </div>
+          )}
+          <button type="submit" className="login-btn" disabled={loading}>
             {isRegister ? 'Register' : 'Login'}
           </button>
         </form>
@@ -163,8 +201,15 @@ const LoginSignup = () => {
           {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
           <button
             className="switch-btn"
-            onClick={() => setIsRegister(!isRegister)}
+            onClick={() => {
+              setIsRegister(!isRegister);
+              setFormData({ name: '', email: '', password: '', role: 'user' });
+              setError('');
+              setSuccess('');
+              setLoading(false);
+            }}
             type="button"
+            disabled={loading}
           >
             {isRegister ? 'Login' : 'Register'}
           </button>

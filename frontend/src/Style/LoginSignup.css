@@ -169,6 +169,32 @@
   box-shadow: 0 4px 16px rgba(99, 102, 241, 0.18);
 }
 
+/* Centered info/success message for login/signup */
+.login-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0.5rem auto 0.7rem auto;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  font-size: 1.08rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+  max-width: 90%;
+  min-width: 60%;
+}
+.login-message.info {
+  background: #eef2ff;
+  color: #6366f1;
+  border: 1px solid #c7d2fe;
+}
+.login-message.success {
+  background: #e6f9f2;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
 /* Error message */
 .login-error {
   color: #e11d48;
